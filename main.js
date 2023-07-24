@@ -43,9 +43,8 @@ let checkOrder = () => {
     }
 
     if (clickedOrder.length == order.length){
-        // alert(`Pontução: ${score}\nVocê acertou! Inciando próximo nível`);
         setTimeout(() => {
-            document.getElementById("pontos").innerHTML = (`NÍVEL: ${score}`);
+            document.getElementById("pontos").innerHTML = (`Pontuação: ${score}`);
          
             setTimeout(() => {
                 nextLevel();
@@ -89,7 +88,7 @@ let nextLevel = () =>{
 
 //função game over
 let gameOver = () => {
-    alert(`GAME OVER!\nNÍVEL: ${score}\n\nClique em Ok para iniciar um novo jogo.`)
+    alert(`GAME OVER!\nPontuaçãoL: ${score}\n\nClique em Ok para iniciar um novo jogo.`)
     order = [];
     clickedOrder = [];
 
