@@ -2,11 +2,6 @@ let order = [];
 let clickedOrder = [];
 let score = 0;
 
-//0 = verde
-//1 = vermelho
-//2 = amarelo
-//3 = azul
-
 
 const blue = document.querySelector(".blue");
 const red = document.querySelector(".red");
@@ -48,8 +43,15 @@ let checkOrder = () => {
     }
 
     if (clickedOrder.length == order.length){
-        alert(`Pontução: ${score}\nVocê acertou! Inciando próximo nível`);
-        nextLevel();        
+        // alert(`Pontução: ${score}\nVocê acertou! Inciando próximo nível`);
+        setTimeout(() => {
+            document.getElementById("pontos").innerHTML = (`NÍVEL: ${score}`);
+         
+            setTimeout(() => {
+                nextLevel();
+            },2000);
+        },500);
+        
     }
 
 }
@@ -87,7 +89,7 @@ let nextLevel = () =>{
 
 //função game over
 let gameOver = () => {
-    alert(`GAME OVER!\nPontuação: ${score}\n\nClique em Ok para iniciar um novo jogo.`)
+    alert(`GAME OVER!\nNÍVEL: ${score}\n\nClique em Ok para iniciar um novo jogo.`)
     order = [];
     clickedOrder = [];
 
@@ -96,7 +98,7 @@ let gameOver = () => {
 
 //função de início
 let playGame = () => {
-    alert("          Bem vindo! Geni Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
+    alert("          Bem vindo! Genius Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
     score = 0;
 
     nextLevel();
