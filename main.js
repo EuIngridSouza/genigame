@@ -96,7 +96,7 @@ let gameOver = () => {
 
 //função de início
 let playGame = () => {
-    alert("          Bem vindo! Genius Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
+    alert("          Bem vindo! Geni Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
     score = 0;
 
     nextLevel();
