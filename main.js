@@ -29,7 +29,7 @@ let lightColor = (element, number) => {
 
     setTimeout(() => {
         element.classList.remove("selected");
-    };
+    });
 }
 
 //checa se os botões foram clicados na ordem correta
