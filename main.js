@@ -13,44 +13,43 @@ let shuffleOrder = () =>{
     let colorOrder = Math.floor(Math.random()* 4);
     order[order.length] = colorOrder;
     clickedOrder = [];
-
+    
     for(let i in order){
         let elementColor = createColorElement(order[i]);
         lightColor(elementColor, Number(i)+1);
+       
     }
 }
 
 //acende a próxima cor
 let lightColor = (element, number) => {
     number = number * 500;
+    
     setTimeout(() => {
         element.classList.add("selected");
-    }, number-250);
+        console.log("acendi")
+        setTimeout(() => {
+            element.classList.remove("selected");
+            console.log("apaguei")
+        },200);
+    },number - 250);
 
-    setTimeout(() => {
-        element.classList.remove("selected");
-    });
 }
 
+    
 //checa se os botões foram clicados na ordem correta
 let checkOrder = () => {
 
     for(let i in clickedOrder){
-        if(clickedOrder[i] !== order[i]){
+        if(clickedOrder[i] != order[i]){
             gameOver();
             break;
         }
     }
 
-    if (clickedOrder.length == order.length){
-        setTimeout(() => {
-            document.getElementById("pontos").innerHTML = (`Pontuação: ${score}`);
-         
-            setTimeout(() => {
-                nextLevel();
-            },2000);
-        },500);
-        
+    if (clickedOrder.length == order.length){      
+            document.getElementById("pontos").innerHTML = (`Pontuação: ${score}`);       
+            nextLevel();      
     }
 
 }
@@ -63,7 +62,8 @@ let click = (color) => {
     setTimeout(() => {
         createColorElement(color).classList.remove("selected");
         checkOrder();
-    },250);
+        console.log("ordem de clique")
+    }, 250);
 
 }
 
@@ -84,23 +84,54 @@ let createColorElement=(color) => {
 let nextLevel = () =>{
     score++;
     shuffleOrder();
+    
 }
 
 //função game over
 let gameOver = () => {
-    alert(`GAME OVER!\nPontuação: ${score-1}\n\nClique em Ok para iniciar um novo jogo.`)
+    
+    alert(`GAME OVER!\n\nClique em Ok para iniciar um novo jogo.`)
     order = [];
     clickedOrder = [];
-
-    playGame();
+    restart();
+    document.getElementById("pontos").innerHTML = (`Pontuação: 0`)
+    
 }
 
+let countTime = () => {
+    setTimeout(myTimeout1,1000)
+    setTimeout(myTimeout2,2000)
+    setTimeout(myTimeout3,3000)
+    setTimeout(myTimeout4,4000)
+    
+}
+function myTimeout1(){
+    document.getElementById("pontos").innerHTML = (`Começa em 3`)
+}
+function myTimeout2(){
+    document.getElementById("pontos").innerHTML = (`Começa em 2`)
+}
+function myTimeout3(){
+    document.getElementById("pontos").innerHTML = (`Começa em 1`)
+}
+function myTimeout4(){
+    document.getElementById("pontos").innerHTML = (``)
+    nextLevel();
+}
+
+let restart = ()=>{
+    alert("          Recomeçando... ")
+    score = 0;
+    nextLevel();
+    document.getElementById("pontos").innerHTML = (`Pontuação: ${score}`);
+}
 //função de início
 let playGame = () => {
-    alert("          Bem vindo! Genius Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
-    score = 0;
+    alert("          Bem vindo! Geni Game é um jogo de memória.\n\nINSTRUÇÕES:\n          Clique na ordem correta dos botões para ganhar pontos e subir de nível. ")
+    score = 0;   
+    countTime();
+    document.getElementById("pontos").innerHTML = (`Pontuação: ${score}`);
 
-    nextLevel();
 }
 
 //eventos de cliques
@@ -108,6 +139,5 @@ green.onclick = () => click(0);
 red.onclick = () => click(1);
 yellow.onclick = () => click(2);
 blue.onclick = () => click(3);
-
 
 playGame();
